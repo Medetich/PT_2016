@@ -18,7 +18,7 @@ namespace Primenumber1
                 for (int i = 2; i * i <= a; i++)
                 {
                     if (a % i == 0)
-                        a = true;
+                        p = true;
                 }
                 if (p == false)
                     Console.WriteLine(a);
