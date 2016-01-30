@@ -9,7 +9,7 @@ namespace Complex
     class Complex
     {
         public int a, b;
-        Complex(int a, int b)
+        public Complex(int a, int b)
         {
             this.a = a;
             this.b = b;
@@ -21,7 +21,7 @@ namespace Complex
 
         public static Complex operator +(Complex c1, Complex c2)
         {
-            Complex c3 = new Complex(c1.a + c2.a; c1.b + c2.b);
+            Complex c3 = new Complex(c1.a + c2.a, c1.b + c2.b);
             return c3;
         }
     }
