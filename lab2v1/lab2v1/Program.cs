@@ -11,34 +11,33 @@ namespace lab2v1
     {
         static void Main(string[] args)
         {
-            int[] array = new int[6];
             FileStream fsi = new FileStream("input.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
             FileStream fso = new FileStream("output.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
             StreamReader rs = new StreamReader(fsi);
             StreamWriter sw = new StreamWriter(fso);
-            string[] massive = rs.ReadLine().Split(' ');
+            string[] massive = rs.ReadLine().Split();
+
+            int min = int.Parse(massive[0]);
+            int max = int.Parse(massive[0]);
+
+          
             for (int i = 0; i < massive.Length; i++)
-                array[i] = int.Parse(massive[i]);
-            int k = 0;
-            int min = array[0];
-            for (int i = 0; i < array.Length; i++)
             {
-                for (int j = 1; j < min; j++)
-                {
-                    if (array[i] % j == 0)
-                    {
-                        k++;
-                    }
-                }
-                if (k == 2 && array[i] < min)
-                {
-                    min = array[i];
-                }
-                k = 0;
+                int a = int.Parse(massive[i]);
+                if (a < min)
+                    min = a;
+                if (a > max)
+                    max = a;
             }
-            sw.WriteLine("Minumum number: " + min);
+
+            Console.WriteLine(max + " " + min);
+            sw.WriteLine(max + " " + min);
+
             sw.Close();
             rs.Close();
+            fsi.Close();
+            fso.Close();
+            Console.ReadKey();
         }
     }
 }

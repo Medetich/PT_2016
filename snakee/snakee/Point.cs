@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace snakee
+namespace Snake.Models
 {
-    class Point 
+    [Serializable]
+    public class Point 
     {
         public int x, y;
         public Point (int x, int y)

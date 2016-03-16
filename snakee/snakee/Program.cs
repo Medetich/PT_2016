@@ -2,16 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.IO;
 
-namespace snakee
+namespace Game
 {
-    class Program
+    [Serializable]
+    public class Program
     {
+        public enum Direction { up, down, left, right };
+        public static Direction direction;
+
+
         static void Main(string[] args)
         {
-            Game game = new Game();
+            Snake.Models.Game snake = new Snake.Models.Game();
             Console.ReadKey();
+
         }
     }
 }

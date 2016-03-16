@@ -4,35 +4,53 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace snakee
+namespace Snake.Models
 {
-    class Food : Drawer
+    [Serializable]
+    public class Food : Drawer
     {
         public Food()
         {
-            color = ConsoleColor.Green;
+            color = ConsoleColor.Yellow;
             sign = '*';
         }
-        public void SetNewPosition()
+        public void NewRandom()
         {
-            body.Clear();
-            Game.food.body.Add(new Point(new Random().Next(3, 60), new Random().Next(4, 30)));
+            int x = 0, y = 0;
+            bool find = false;
+
+            while (!find)
+            {
+                x = (new Random().Next()) % 49;
+                y = (new Random().Next()) % 24;
+                find = true;
+                for (int i = 0; i < Game.wall.body.Count - 1; i++)
+                {
+                    if (i < Game.snake.body.Count)
+                    {
+                        if ((x == Game.wall.body[i].x && y == Game.wall.body[i].y) || (x == Game.snake.body[i].x && y == Game.snake.body[i].y) || x == 49 || x == 0 || y == 24 || y == 0)
+                        {
+                            find = false;
+                        }
+                    }
+
+                    else
+                    if ((x == Game.wall.body[i].x && y == Game.wall.body[i].y) || x == 49 || x == 0 || y == 24 || y == 0)
+                    {
+                        find = false;
+                    }
+                }
+            }
+            if (body.Count == 0)
+            {
+                body.Add(new Point(x, y));
+            }
+            else
+            {
+                body[0].x = x;
+                body[0].y = y;
+            }
         }
 
-        public static bool FoodinWall()
-        {
-            foreach (Point p in Game.wall.body)
-                if (Game.food.body[0].x == p.x && Game.food.body[0].y == p.y)
-                    return true;
-                    return false;
-        }
-
-        public static bool FoodinSnake() 
-        {
-            for (int i = 0; i < Game.snake.body.Count; i++)
-                if (Game.food.body[0].x == Game.snake.body[i].x && Game.food.body[0].y == Game.snake.body[i].y)
-                    return true;
-                    return false;
-        }
     }
 }
